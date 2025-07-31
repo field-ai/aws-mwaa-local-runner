@@ -95,7 +95,7 @@ By default, the `bootstrap.sh` script creates a username and password for your l
 
 #### Airflow UI
 
-- Open the Apache Airlfow UI: <http://localhost:8080/>.
+- Open the Apache Airlfow UI: <http://localhost:8081/>.
 
 ### Step four: Add DAGs and supporting files
 

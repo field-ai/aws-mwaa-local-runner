@@ -31,7 +31,7 @@ services:
       - "${PWD}/requirements:/usr/local/airflow/requirements"
       - "${PWD}/startup_script:/usr/local/airflow/startup"
     ports:
-      - "8080:8080"
+      - "8081:8081"
     command: local-runner
     healthcheck:
       test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
