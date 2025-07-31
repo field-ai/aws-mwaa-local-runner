@@ -48,7 +48,40 @@ RUN chmod +x /entrypoint.sh
 
 EXPOSE 8081 5555 8793
 
+# Switch to root for system libraries
+USER root
+
+# Install system dependencies for Playwright browsers
+RUN yum install -y \
+    libX11 \
+    libXcomposite \
+    libXcursor \
+    libXdamage \
+    libXext \
+    libXi \
+    libXtst \
+    cups-libs \
+    libXScrnSaver \
+    pango \
+    atk \
+    at-spi2-atk \
+    gtk3 \
+    nss \
+    alsa-lib \
+    xorg-x11-fonts-100dpi \
+    xorg-x11-fonts-75dpi \
+    xorg-x11-utils \
+    xorg-x11-fonts-cyrillic \
+    xorg-x11-fonts-Type1 \
+    xorg-x11-fonts-misc \
+    && yum clean all
+
 USER airflow
+
+RUN pip install --user --no-cache-dir playwright playwright-stealth && \
+    playwright install chromium
+
 WORKDIR ${AIRFLOW_USER_HOME}
+
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["local-runner"]
